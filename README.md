@@ -1,6 +1,6 @@
 # 🎧 Spotify Full Clone
 
-👉​🌐 https://spotify-full-clone.vercel.app/
+👉​🌐 https://spotify-full-clone-react.vercel.app/
 
 Clon que replica la experiencia completa de Spotify Web, ofreciendo diseño fiel al original, reproducción de música, sincronización de letras y gestión de colecciones locales. Todo en una interfaz moderna, responsiva y mobile first.
 
