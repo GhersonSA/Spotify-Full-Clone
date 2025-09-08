@@ -1,5 +1,7 @@
 # 🎧 Spotify Full Clone
 
+👉​🌐 https://spotify-full-clone.vercel.app/
+
 Clon que replica la experiencia completa de Spotify Web, ofreciendo diseño fiel al original, reproducción de música, sincronización de letras y gestión de colecciones locales. Todo en una interfaz moderna, responsiva y mobile first.
 
 Spotify Full Clone es un proyecto personal desarrollado con HTML, JavaScript, React y TailwindCSS, cuyo objetivo es recrear la plataforma de música más popular del mundo. Este proyecto busca no solo imitar su estética, sino también ofrecer funcionalidades que brinden una experiencia inmersiva al usuario.
