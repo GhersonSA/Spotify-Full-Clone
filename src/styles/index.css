@@ -1,0 +1,193 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-spotify: #1ED760;
+
+  --color-bg-secondary: #121212; /* Primer back #fff luego #121212 */
+  --color-bg-tertiary: #1F1F1F; /* Segundo back #f5f */
+
+  --text-primary: #FFFFFF; /* Títutlos y textos principales */
+  --text-primary-2: #FFFFFFB2; /* "Mostrar todos..." */
+  --text-primary-3: #FFFFFFE6; /* Mini modales (Cuenta, cerrar sesión...) */
+  --color-secondary: #B3B3B3; /* Artistas... */
+  --text-dark: #000000; /* Textos oscuros */
+
+  --font-spotify: 'CircularSpotify', Inter, sans-serif;
+
+  --bg-tabbar: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9), #121212), transparent;
+}
+/* SVG sizes */
+.svg {
+    @apply w-6 h-6;
+}
+
+/* Header Mobile */
+.header-text-xl {
+    @apply text-xl font-bold;
+}
+.header-text-sm {
+    @apply flex items-center text-sm font-bold gap-2 py-1;
+}
+.header-container-py-2 {
+    @apply flex items-center py-2;
+}
+
+/* Main Mobile */
+.main-container-mobile {
+    @apply w-full h-[256px];
+}
+.main-margin {
+    @apply mt-6 mb-3;
+}
+.main-container-scroll {
+    @apply flex overflow-x-scroll overflow-y-hidden;
+}
+.main-card-mobile {
+    @apply flex flex-col items-center justify-center cursor-pointer;
+}
+.main-card-element {
+    @apply w-[168px] h-[220px] inline-flex flex-col px-2 pt-2 hover:bg-[#1f1f1f] rounded-lg;
+}
+.main-card-img {
+    @apply h-[152px] w-[152px] rounded-sm object-cover;
+}
+.main-card-text {
+    @apply text-[16px];
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* TabBar Mobile */
+.tabbar-a {
+    @apply flex flex-col justify-center items-center flex-1 gap-1 text-secondary hover:text-white;
+}
+
+/* Footer Mobile */
+.footer-margin {
+    @apply mb-8 md:w-2/5 md:mr-6 md:mb-8;
+}
+.footer-ul {
+    @apply flex flex-col text-[16px];
+}
+.footer-p {
+    @apply text-white font-bold;
+}
+.footer-span {
+    @apply text-secondary mb-2 hover:text-white hover:underline;
+}
+.footer-a {
+    @apply relative inline-flex items-center justify-center w-10 h-10 bg-[#292929] rounded-full hover:bg-[#727272];
+}
+.footer-a-icon {
+    @apply absolute top-3 right-1 text-white;
+}
+.footer-span-2 {
+    @apply text-secondary text-sm hover:text-white;
+}
+
+
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-bold-webfont.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-black-webfont.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-blackitalic-webfont.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-medium-webfont.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-bookitalic-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-mediumitalic-webfont.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-book-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+
+}
+@font-face {
+    font-family: 'CircularSpotify';
+    src: url('../assets/fonts/circularspotifytext-light-webfont.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/*========== LAYOUT BASE ==========*/
+@layer base {
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html {
+        /* font-size: 62.5%; */
+        scroll-behavior: smooth;
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        /* color: var(--text-color-dark); */
+    }
+    html,
+    body {
+        overflow-x: hidden;
+    }
+    body {
+        background: var(--color-bg-secondary);/*
+        color: var(--text-color-dark); */
+        font-family: var(--font-primary);
+    }
+    input,
+    button,
+    textarea {
+        border: none;
+        outline: none;
+    }
+    ul, li {
+        list-style: none;
+    }
+    a {
+        text-decoration: none;
+    }
+}
