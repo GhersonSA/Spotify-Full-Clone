@@ -1,12 +1,27 @@
-# React + Vite
+# 🎧 Spotify Full Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+👉​🌐 https://spotify-full-clone-react.vercel.app/
 
-Currently, two official plugins are available:
+Clon que replica la experiencia completa de Spotify Web, ofreciendo diseño fiel al original, reproducción de música, sincronización de letras y gestión de colecciones locales. Todo en una interfaz moderna, responsiva y mobile first.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Spotify Full Clone es un proyecto personal desarrollado con HTML, JavaScript, React y TailwindCSS, cuyo objetivo es recrear la plataforma de música más popular del mundo. Este proyecto busca no solo imitar su estética, sino también ofrecer funcionalidades que brinden una experiencia inmersiva al usuario.
 
-## Expanding the ESLint configuration
+🛠️ Desarrollado con React y TailwindCSS.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Caracteristicas Destacadas:
+
+**🌟 Experiencia de Usuario Completa:** La aplicación ofrece una experiencia de usuario fluida e intuitiva, similar a la plataforma original de Spotify.
+**🖌️ Réplica exacta del Diseño Original:** Se ha cuidado cada detalle de su diseño manteniendo su armonía original.
+**🔊​ Control de Reproducción dinámico:** Controla el avance de la canción, el volumen, el orden de la cola y la reproducción aleatoria.
+**🎶 Sincronización de letras en tiempo real:** Esta es la funcionalidad estrella. Destaca la precisión con la que las letras se sincronizan al ritmo de la música, ofreciendo una experiencia inmersiva y atractiva para los usuarios.
+**📁 Gestión de Colecciones de Musica Local:** La biblioteca de canciones se gestionan de manera local.
+**📱 Responsive Design & Mobile First:** Diseño adaptado a múltiples dispositivos. Interfaces limpias, jerarquía visual clara y navegación optimizada para pantallas pequeñas.
+
+⚠️ Este proyecto es de carácter educativo y no tiene relación oficial con Spotify®.
+
+🔍 ¡Visita mi portafolio para más proyectos y no dudes en contactarme!
+
+🌐​ https://ghersonsa.com
+
+# npm install
+# npm run dev
