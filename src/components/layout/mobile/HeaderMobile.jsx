@@ -1,7 +1,8 @@
 import { useState } from "react";
-import SettingsIcon from "../../assets/icons/SettingsIcon";
-import MarkIcon from "../../assets/icons/MarkIcon";
-import InclinedArrowIcon from "../../assets/icons/InclinedArrowIcon";
+import SettingsIcon from "../../../assets/icons/SettingsIcon";
+import MarkIcon from "../../../assets/icons/MarkIcon";
+import InclinedArrowIcon from "../../../assets/icons/InclinedArrowIcon";
+import SpotifyIcon from "../../../assets/icons/SpotifyIcon";
 
 const Header = () => {
 
@@ -9,8 +10,10 @@ const Header = () => {
     return (
         <header>
             {/* Mobile and Tablet Header */}
-            <div className="flex justify-between items-center h-[72px] p-3 bg-black text-white lg:hidden">
-                <span className="header-text-xl">¡Buenos días!</span>
+            <div className="flex justify-between items-center h-[72px] p-3 bg-black text-white">
+                <a href="https://ghersonsa.com/projects/proyecto-2" target="_blank" aria-label="GhersonSA/spotify-full-clone" className="ml-1">
+                    <SpotifyIcon className="svg" />
+                </a>
                 <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-full hover:bg-white/10 transition">
                     <span>
                         <SettingsIcon className="svg"/>
@@ -18,7 +21,7 @@ const Header = () => {
                 </button>
             </div>
             {isMenuOpen && (
-                <aside className="fixed top-0 right-0 w-full h-full bg-black text-white z-10 lg:hidden">
+                <aside className="fixed top-0 right-0 w-full h-full bg-black text-white z-10">
                     <div className="flex flex-col flex-grow-1 items-start px-10 pt-14">
                         <button className="header-container-py-2 gap-2">
                             <span className="header-text-xl">Ver Cuenta</span>
@@ -51,7 +54,7 @@ const Header = () => {
                             </button>
                         </div>
                     </div>
-                    <h3 className="text-center text-sm text-secondary mt-10">
+                    <h3 className="text-center text-sm text-secondary mt-30 w-full">
                         © 2025 Spotify Full Clone by&nbsp;
                         <a href="https://ghersonsa.com/" target="_blank" aria-label="GhersonSA" className="underline">
                             GhersonSA
@@ -65,7 +68,6 @@ const Header = () => {
                     </button>
                 </aside>
             )}
-            { /* Desktop Header */ } 
         </header>
     )
 }

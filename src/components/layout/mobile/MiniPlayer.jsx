@@ -1,5 +1,5 @@
-import FavoriteIcon from "../../assets/icons/FavoriteIcon";
-import PlayIcon from "../../assets/icons/PlayIcon";
+import FavoriteIcon from "../../../assets/icons/FavoriteIcon";
+import PlayIcon from "../../../assets/icons/PlayIcon";
 
 const MiniPlayer = () => {
     return (

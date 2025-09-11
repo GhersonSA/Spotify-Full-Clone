@@ -1,9 +1,13 @@
-import Layout from './layout/Layout'
+import DesktopLayout from './layout/DesktopLayout'
+import MobileLayout from './layout/MobileLayout'
 import './styles/index.css'
 
 function App() {
   return (
-    <Layout />
+    <>
+      <MobileLayout />
+      <DesktopLayout />
+    </>
   )
 }
 

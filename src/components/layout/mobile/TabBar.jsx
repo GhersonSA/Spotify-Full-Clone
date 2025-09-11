@@ -1,9 +1,9 @@
 import MiniPlayer from "./MiniPlayer";
 
-import HomeIcon from "../../assets/icons/HomeIcon";
-import SearchBarIcon from "../../assets/icons/SearchBarIcon";
-import YourLibraryIcon from "../../assets/icons/YourLibraryIcon";
-import SpotifyIcon from "../../assets/icons/SpotifyIcon";
+import HomeIcon from "../../../assets/icons/HomeIcon";
+import SearchBarIcon from "../../../assets/icons/SearchBarIcon";
+import YourLibraryIcon from "../../../assets/icons/YourLibraryIcon";
+import SpotifyIcon from "../../../assets/icons/SpotifyIcon";
 
 const TabBar = () => {
     return (
