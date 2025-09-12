@@ -1,7 +1,7 @@
 
 const SidebarLeft = () => {
     return (
-        <div className="w-full min-w-[280px] max-w-[420px] bg-bg-secondary">
+        <div className="">
                 <h1>Sidebar Left (En progreso...)</h1>
         </div>
     )

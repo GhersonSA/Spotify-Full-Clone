@@ -1,6 +1,8 @@
 const SidebarRight = () => {
     return (
-        <h1>Sidebar right</h1>
+        <div className="">
+            <h1>Sidebar Right</h1>
+        </div>
     )
 }
 

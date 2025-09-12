@@ -2,7 +2,7 @@
 const HeaderDesktop = () => {
 
     return (
-        <header>
+        <header className="h-16 bg-black">
             <div>
                 Header
             </div>
