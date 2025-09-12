@@ -6,6 +6,7 @@
 
   --color-bg-secondary: #121212; /* Primer back #fff luego #121212 */
   --color-bg-tertiary: #1F1F1F; /* Segundo back #f5f */
+  --color-hover: #2a2a2a;
 
   --text-primary: #FFFFFF; /* Títutlos y textos principales */
   --text-primary-2: #FFFFFFB2; /* "Mostrar todos..." */

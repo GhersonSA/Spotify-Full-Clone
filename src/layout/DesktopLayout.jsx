@@ -56,7 +56,7 @@ const DesktopLayout = () => {
     };
 
     return (
-        <main className="min-h-screen w-full hidden lg:block bg-black p-2">
+        <main className="min-h-screen w-full hidden lg:block bg-black px-2">
             <HeaderDesktop />
             <div className="flex gap-1 w-full">
                 <div style={{ width: sidebarLeftWidth }} className="min-w-[280px] max-w-[420px] bg-bg-secondary rounded-lg">
