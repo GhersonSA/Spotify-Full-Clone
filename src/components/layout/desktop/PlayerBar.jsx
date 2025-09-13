@@ -12,6 +12,8 @@ import FullVolumenIcon from "../../../assets/icons/FullVolumenIcon";
 import MiniPlayerIcon from "../../../assets/icons/MiniPlayerIcon";
 import FullScreenIcon from "../../../assets/icons/FullScreenIcon";
 
+import ButtonPlayerBar from "../../ui/desktop/ButtonPlayerBar";
+
 const PlayerBar = () => {
     return (
         <div className="fixed bottom-0 bg-black h-22 w-full m-[-8px] p-2">
@@ -48,22 +50,8 @@ const PlayerBar = () => {
                         <div className="flex flex-col justify-center items-center">
                             <div className="flex justify-center items-center mb-2 gap-4">
                                 <div className="flex-1 flex justify-end items-center gap-2">
-                                    <button className="button-svg-playerbar group">
-                                        <span className="flex items-center justify-center">
-                                            <RandomIcon className="svg-player-bar" />
-                                        </span>
-                                        <span className="svg-tooltip-player-bar">
-                                            Activar aleatorio
-                                        </span>
-                                    </button>
-                                    <button className="button-svg-playerbar group">
-                                        <span className="flex items-center justify-center">
-                                            <ArrowBackIcon className="svg-player-bar" />
-                                        </span>
-                                        <span className="svg-tooltip-player-bar">
-                                            Anterior
-                                        </span>
-                                    </button>
+                                    <ButtonPlayerBar icon={RandomIcon} tooltip="Activar aleatorio" />
+                                    <ButtonPlayerBar icon={ArrowBackIcon} tooltip="Anterior" />
                                 </div>
                                 <button className="button-svg-playerbar group bg-white rounded-full ">
                                     <span className="flex items-center justify-center ">
@@ -74,22 +62,8 @@ const PlayerBar = () => {
                                     </span>
                                 </button>
                                 <div className="flex-1 flex justify-start items-center gap-2 ml-1.5">
-                                    <button className="button-svg-playerbar group">
-                                        <span className="flex items-center justify-center">
-                                            <ArrowNextIcon className="svg-player-bar" />
-                                        </span>
-                                        <span className="svg-tooltip-player-bar">
-                                            Siguiente
-                                        </span>
-                                    </button>
-                                    <button className="button-svg-playerbar group">
-                                        <span className="flex items-center justify-center">
-                                            <RepeatIcon className="svg-player-bar" />
-                                        </span>
-                                        <span className="svg-tooltip-player-bar">
-                                            Activar repetir
-                                        </span>
-                                    </button>
+                                    <ButtonPlayerBar icon={ArrowNextIcon} tooltip="Siguiente" />
+                                    <ButtonPlayerBar icon={RepeatIcon} tooltip="Activar repetir" />
                                 </div>
                             </div>
                             <div className="flex justify-between items-center gap-1 h-[17px]">
@@ -109,47 +83,12 @@ const PlayerBar = () => {
                     </div>
                     <div className="min-w-[180px] w-[30%] flex justify-end items-center">
                         <div className="flex justify-end items-center flex-grow-1">
-                            <button className="button-svg-playerbar group">
-                                <span className="flex items-center justify-center">
-                                    <SongViewIcon className="svg-player-bar" />
-                                </span>
-                                <span className="svg-tooltip-player-bar">
-                                    Vista Sonando
-                                </span>
-                            </button>
-                            <button className="button-svg-playerbar group">
-                                <span className="flex items-center justify-center">
-                                    <LyricViewIcon className="svg-player-bar" />
-                                </span>
-                                <span className="svg-tooltip-player-bar">
-                                    Letra
-                                </span>
-                            </button>
-                            <button className="button-svg-playerbar group">
-                                <span className="flex items-center justify-center">
-                                    <QueueIcon className="svg-player-bar" />
-                                </span>
-                                <span className="svg-tooltip-player-bar">
-                                    Cola
-                                </span>
-                            </button>
-                            <button className="button-svg-playerbar group">
-                                <span className="flex items-center justify-center">
-                                    <ConnectIcon className="svg-player-bar" />
-                                </span>
-                                <span className="svg-tooltip-player-bar">
-                                    Conectar a un dispositivo
-                                </span>
-                            </button>
+                            <ButtonPlayerBar icon={SongViewIcon} tooltip="Vista Sonando" />
+                            <ButtonPlayerBar icon={LyricViewIcon} tooltip="Letra" />
+                            <ButtonPlayerBar icon={QueueIcon} tooltip="Cola" />
+                            <ButtonPlayerBar icon={ConnectIcon} tooltip="Conectar a un dispositivo" />
                             <div className="mr-1 flex justify-center items-center">
-                                <button className="button-svg-playerbar group">
-                                    <span className="flex justify-center items-center">
-                                        <FullVolumenIcon className="svg-player-bar" />
-                                    </span>
-                                    <span className="svg-tooltip-player-bar">
-                                        Silenciar
-                                    </span>
-                                </button>
+                                <ButtonPlayerBar icon={FullVolumenIcon} tooltip="Silenciar" />
                                 <div className="mt-0.5 min-w-[110px] rounded-full">
                                     <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px] px-2">
                                         <div className="bg-white rounded-full h-full hover:bg-spotify cursor-pointer">.</div>

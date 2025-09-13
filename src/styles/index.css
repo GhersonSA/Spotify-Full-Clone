@@ -27,6 +27,17 @@
     @apply w-6 h-6;
 }
 
+/* Desktop Layout */
+.sidebars-desktop {
+    @apply min-w-[280px] max-w-[420px] h-[calc(100vh-88px-64px)] bg-bg-secondary rounded-lg overflow-auto;
+}
+.main-desktop {
+    @apply flex-1 min-w-[422px] p-4 text-[20px] lg:bg-bg-secondary rounded-lg h-[calc(100vh-88px-64px)] overflow-auto;
+}
+.resizes-desktop {
+    @apply w-[2px] my-3 cursor-col-resize bg-black hover:bg-secondary rounded-lg;
+}
+
 /* Header Mobile */
 .header-text-xl {
     @apply text-xl font-bold;
@@ -59,21 +70,6 @@
 }
 .main-card-text {
     @apply text-[16px];
-}
-
-/* Player Bar */
-
-.button-svg-playerbar {
-    @apply h-8 w-8 hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer;
-}
-.svg-player-bar {
-    @apply w-6 h-6 text-secondary translate-y-1 hover:text-white;
-}
-.svg-tooltip-player-bar {
-    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full left-1/2 transform -translate-x-1/2;
-}
-.svg-tooltip-player-bar-end { /* Esquina derecha abajo */
-    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full right-[0px];
 }
 
 .scrollbar-hide {
@@ -112,6 +108,22 @@
 .footer-span-2 {
     @apply text-secondary text-sm hover:text-white;
 }
+
+/* Player Bar Desktop */
+
+.button-svg-playerbar {
+    @apply h-8 w-8 hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer;
+}
+.svg-player-bar {
+    @apply w-6 h-6 text-secondary translate-y-1 hover:text-white;
+}
+.svg-tooltip-player-bar {
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full left-1/2 transform -translate-x-1/2;
+}
+.svg-tooltip-player-bar-end { /* Esquina derecha abajo */
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full right-[0px];
+}
+
 
 
 @font-face {

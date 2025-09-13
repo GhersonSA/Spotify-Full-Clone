@@ -1,14 +1,14 @@
-const SvgPlayerBar = () => {
+const ButtonPlayerBar = ({icon: Icon, tooltip}) => {
     return (
         <button className="button-svg-playerbar group">
             <span className="flex items-center justify-center">
-                <RandomIcon className="svg-player-bar" />
+                <Icon className="svg-player-bar" />
             </span>
             <span className="svg-tooltip-player-bar">
-                Activar aleatorio
+                {tooltip}
             </span>
         </button>
     )
 }
 
-export default SvgPlayerBar;
+export default ButtonPlayerBar;

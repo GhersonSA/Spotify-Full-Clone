@@ -59,19 +59,19 @@ const DesktopLayout = () => {
         <main className="min-h-screen w-full hidden lg:block bg-black px-2">
             <HeaderDesktop />
             <div className="flex gap-1 w-full">
-                <div style={{ width: sidebarLeftWidth }} className="min-w-[280px] max-w-[420px] bg-bg-secondary rounded-lg">
+                <div style={{ width: sidebarLeftWidth }} className="sidebars-desktop">
                     <SidebarLeft />
                 </div>
 
-                <div className="w-[2px] my-3 cursor-col-resize bg-black hover:bg-secondary rounded-lg" onMouseDown={handleLeftResize}></div>
+                <div className="resizes-desktop" onMouseDown={handleLeftResize}></div>
 
-                <div className="flex-1 min-w-[422px] p-4 text-[20px] lg:bg-bg-secondary rounded-lg">
+                <div className="main-desktop">
                     <MainDesktop />
                 </div>
 
-                <div className="w-[2px] my-3 cursor-col-resize bg-black hover:bg-secondary rounded-lg" onMouseDown={handleRightResize}></div>
+                <div className="resizes-desktop" onMouseDown={handleRightResize}></div>
 
-                <div style={{ width: sidebarRightWidth }} className="min-w-[280px] max-w-[420px] bg-bg-secondary rounded-lg">
+                <div style={{ width: sidebarRightWidth }} className="sidebars-desktop">
                     <SidebarRight />
                 </div>
             </div>
