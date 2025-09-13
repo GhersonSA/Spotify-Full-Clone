@@ -31,10 +31,10 @@ const HeaderDesktop = () => {
                                 </button>
                             </div>
                             <div className="w-[474px] h-12">
-                                <input type="search" placeholder="¿Qué quieres escuchar?" className="py-3 pr-24"/>
+                                <input type="search" placeholder="¿Qué quieres reproducir?" className="py-3 pr-24 w-full"/>
                                 <div className="absolute hidden">
                                     <span>
-                                        ¿Qué quieres escuchar?
+                                        ¿Qué quieres reproducir?
                                     </span>
                                     <span>
                                         <kbd>Ctrl</kbd>

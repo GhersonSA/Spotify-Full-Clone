@@ -17,8 +17,12 @@
   --font-spotify: 'CircularSpotify', Inter, sans-serif;
 
   --bg-tabbar: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9), #121212), transparent;
+  --bg-mini-card: #ffffff1a; /* Los cuadraditos de musica que estan en la parte de arriba del main */
+  /* background-image: linear-gradient(rgba(0,0,0,.6) 0,var(--background-base) 100%),var(--background-noise); para el fondo degradado de arriba del main 
+    "bg-[linear-gradient(rgba(0,0,0,0.6)_0%,#121212_100%),#ff6600]"
+  */
 }
-/* SVG sizes */
+/* SVG global */
 .svg {
     @apply w-6 h-6;
 }
@@ -55,6 +59,21 @@
 }
 .main-card-text {
     @apply text-[16px];
+}
+
+/* Player Bar */
+
+.button-svg-playerbar {
+    @apply h-8 w-8 hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer;
+}
+.svg-player-bar {
+    @apply w-6 h-6 text-secondary translate-y-1 hover:text-white;
+}
+.svg-tooltip-player-bar {
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full left-1/2 transform -translate-x-1/2;
+}
+.svg-tooltip-player-bar-end { /* Esquina derecha abajo */
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full right-[0px];
 }
 
 .scrollbar-hide {

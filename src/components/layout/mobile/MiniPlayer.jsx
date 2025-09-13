@@ -24,7 +24,7 @@ const MiniPlayer = () => {
                 </button>
             </div>
             <div className="absolute overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[2px] rounded-[2px] bottom-[0px] px-2">
-                <div className="bg-white">.</div>
+                <div className="bg-white h-full rounded-full">.</div>
             </div>
         </div>
     )
