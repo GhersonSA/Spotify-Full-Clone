@@ -23,7 +23,7 @@ const PlayerBar = () => {
                         <div className="flex items-center">
                             <div className="pr-2">
                                 <div className="w-14 h-14">
-                                    <img src="/public/images/Pretty-Boy-Dirty-Boy.webp" alt="" className="rounded-lg" />
+                                    <img src="/images/Pretty-Boy-Dirty-Boy.webp" alt="" className="rounded-lg" />
                                 </div>
                             </div>
                             <div className="mx-2 h-[37px] flex flex-col justify-center">
