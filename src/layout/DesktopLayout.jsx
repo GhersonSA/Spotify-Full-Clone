@@ -65,7 +65,7 @@ const DesktopLayout = () => {
 
                 <div className="resizes-desktop" onMouseDown={handleLeftResize}></div>
 
-                <div className="main-desktop">
+                <div className="main-desktop scrollbar-hide">
                     <MainDesktop />
                 </div>
 
