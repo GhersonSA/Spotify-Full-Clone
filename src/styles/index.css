@@ -125,6 +125,14 @@
     @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full right-[0px];
 }
 
+/* Sidebar Left Desktop */
+
+.svg-tooltip-sidebar-left {
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg top-full left-1/2 transform -translate-x-1/2;
+}
+.svg-tooltip-siderbar-left-end {
+    @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg top-full;
+}
 
 
 @font-face {

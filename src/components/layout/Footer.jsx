@@ -6,7 +6,7 @@ import WorldIcon from "../../assets/icons/WorldIcon"
 const Footer = () => {
     return (
         <footer className="w-full pt-2 pb-10">
-            <nav className="bg-bg-secondary mb-32">
+            <nav className="bg-bg-secondary mb-32 lg:mb-0">
                 <hr className="border border-t-1 text-white/10 hidden lg:my-5 lg:block" />
                 <div className="flex flex-col justify-between mt-8 lg:flex-row">
                     <div className="flex flex-1 flex-col md:flex-row">

@@ -1,8 +1,14 @@
-import CreateIcon from '../../../assets/icons/CreateIcon';
-import ExpandIcon from '../../../assets/icons/ExpandIcon';
-import SearchBarIcon from '../../../assets/icons/SearchBarIcon';
-import ListIcon from '../../../assets/icons/ListIcon';
-import PinIcon from '../../../assets/icons/PinIcon';
+import CreateIcon from "../../../assets/icons/CreateIcon";
+import ExpandIcon from "../../../assets/icons/ExpandIcon";
+import SearchBarIcon from "../../../assets/icons/SearchBarIcon";
+import ListIcon from "../../../assets/icons/ListIcon";
+import PinIcon from "../../../assets/icons/PinIcon";
+import Feid from "../../../../public/images/Feid.webp"
+import Maluma from "../../../../public/images/Maluma.webp"
+import VeranoRosa from "../../../../public/images/Verano-Rosa.webp";
+
+import CardSideBarLeft from "../../ui/desktop/CardSidebarLeft";
+
 const SidebarLeft = () => {
     return (
         <nav className="scrollbar-hide overflow-y-scroll h-full">
@@ -15,13 +21,19 @@ const SidebarLeft = () => {
                             </button>
                         </div>
                         <div className="flex items-center justify-center gap-2">
-                            <button className="bg-bg-tertiary hover:bg-hover-2 flex items-center justify-center py-1 px-4 rounded-full cursor-pointer">
+                            <button className="bg-bg-tertiary hover:bg-hover-2 flex items-center justify-center py-1 px-4 rounded-full cursor-pointer transition-colors duration-200 ease-in-out relative group">
                                 <CreateIcon className="svg-player-bar" />
                                 <span className="text-sm font-bold">Crear</span>
+                                <span className="svg-tooltip-sidebar-left left-[-120px]">
+                                    Crea una lista,carpeta o Jam
+                                </span>
                             </button>
-                            <button className="p-0.5 hover:rounded-full hover:bg-bg-tertiary cursor-pointer">
+                            <button className="p-0.5 hover:rounded-full hover:bg-bg-tertiary cursor-pointer transition-colors duration-200 ease-in-out relative group">
                                 <span>
                                     <ExpandIcon className="svg-player-bar translate-x-1" />
+                                </span>
+                                <span className="svg-tooltip-siderbar-left-end right-[-10px]">
+                                    Ampliar Tu biblioteca
                                 </span>
                             </button>
                         </div>
@@ -29,26 +41,29 @@ const SidebarLeft = () => {
                 </header>
                 <div className="py-2 px-4">
                     <div className="flex items-center gap-2">
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 cursor-pointer">
+                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
                             <span className="text-sm font-bold">Listas</span>
                         </div>
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 cursor-pointer">
+                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
                             <span className="text-sm font-bold">Artistas</span>
                         </div>
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 cursor-pointer">
+                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
                             <span className="text-sm font-bold">Álbumes</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-[1fr_12px] w-full pt-[2px]">
-                <div className="px-2">
+            <div className="flex pt-[2px]">
+                <div className="flex-1 px-2">
                     <div className="flex justify-between items-center pb-2">
                         <div>
                             <input type="text" className="hidden" />
                             <div className="hidden"></div>
-                            <button className="hover:bg-bg-tertiary p-2 rounded-full cursor-pointer">
+                            <button className="hover:bg-bg-tertiary p-2 rounded-full cursor-pointer transition-colors duration-200 ease-in-out relative group">
                                 <SearchBarIcon className="w-4 h-4 text-secondary hover:text-white" />
+                                <span className="svg-tooltip-siderbar-left-end left-0 top-full">
+                                    Buscar en Tu biblioteca
+                                </span>
                             </button>
                         </div>
                         <button className="flex justify-center items-center gap-1 hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer">
@@ -72,6 +87,9 @@ const SidebarLeft = () => {
                             </div>
                         </div>
                     </div>
+                    <CardSideBarLeft img={Maluma} name="Maluma" artist="Artista" />
+                    <CardSideBarLeft img={Feid} name="Feid" artist="Artista" />
+                    <CardSideBarLeft img={VeranoRosa} name="ÉXITOS 2025" artist="GhersonSA" />
                 </div>
                 <div className="bg-[#ffffff4c] w-3 h-[148px] rounded-none cursor-pointer"></div>
             </div>
