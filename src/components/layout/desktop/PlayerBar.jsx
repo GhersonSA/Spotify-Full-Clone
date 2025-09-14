@@ -23,15 +23,15 @@ const PlayerBar = () => {
                         <div className="flex items-center">
                             <div className="pr-2">
                                 <div className="w-14 h-14">
-                                    <img src="/images/Ferxxocalipsis.webp" alt="" className="rounded-lg" />
+                                    <img src="/public/images/Pretty-Boy-Dirty-Boy.webp" alt="" className="rounded-lg" />
                                 </div>
                             </div>
                             <div className="mx-2 h-[37px] flex flex-col justify-center">
                                 <div>
-                                    <span className="text-sm hover:underline cursor-pointer">LUNA</span>
+                                    <span className="text-sm hover:underline cursor-pointer">Borro Cassette</span>
                                 </div>
                                 <div>
-                                    <span className="text-secondary text-[12px] hover:underline hover:text-white cursor-pointer">Feid, ATL Jacob</span>
+                                    <span className="text-secondary text-[12px] hover:underline hover:text-white cursor-pointer">Maluma</span>
                                 </div>
                             </div>
                             <div className="mx-2">
