@@ -116,7 +116,7 @@ const SidebarRight = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <span className="font-medium text-start text-sm text-secondary my-2 line-clamp-3">Maluma is the stage name of award-winning Colombian pop singer, songwriter, and rapper Juan Luis Londoño Arias. Possessed of a sweet, grainy tenor voice and streetwise yet romantic delivery, the pop urbano was able to cross over from a reggaeton audience to the mainstream thanks to infectious early singles such as "Obsesión" and "Miss Independent"</span>
+                                    <span className="leading-snug font-medium text-start text-sm text-secondary my-2 line-clamp-3">Maluma is the stage name of award-winning Colombian pop singer, songwriter, and rapper Juan Luis Londoño Arias. Possessed of a sweet, grainy tenor voice and streetwise yet romantic delivery, the pop urbano was able to cross over from a reggaeton audience to the mainstream thanks to infectious early singles such as "Obsesión" and "Miss Independent"</span>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ const SidebarRight = () => {
                                 <h2 className="text-[16px] font-bold">Créditos</h2>
                                 <button className="text-sm text-secondary font-bold ml-[10px] hover:text-white hover:underline hover:scale-[1.04] transition-all duration-100 ease-out cursor-pointer">Mostrar todos</button>
                             </div>
-                            <div className="flex justify-between items-center">
+                            <div className="flex justify-between items-center leading-snug">
                                 <div className="flex flex-col">
                                     <a href="" className="hover:underline">
                                         <span className="font-medium text-[16px]">Maluma</span>
@@ -138,16 +138,16 @@ const SidebarRight = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col leading-snug">
                                 <span className="font-medium text-[16px]">Juan Luis Londoño Arias</span>
                                 <span className="font-medium text-sm text-secondary">Compositor, Letrista</span>
                             </div>
-                            <div className="flex flex-col">
+                            <div className="flex flex-col leading-snug">
                                 <span className="font-medium text-[16px]">Rene David Cano Rios</span>
                                 <span className="font-medium text-sm text-secondary">Composición, Letrista</span>
                             </div>
                         </div>
-                        <div className="h-[121px] px-2 pt-4 pb-2 bg-bg-tertiary rounded-lg flex flex-col gap-2">
+                        <div className="min-h-[121px] px-2 pt-4 pb-2 bg-bg-tertiary rounded-lg flex flex-col gap-2">
                             <div className="flex justify-between items-center px-2">
                                 <h2 className="text-[16px] font-bold">A continuación en la cola</h2>
                                 <button className="text-sm text-secondary font-bold ml-[10px] hover:text-white hover:underline hover:scale-[1.04] transition-all duration-100 ease-out cursor-pointer">Abrir cola</button>
@@ -163,12 +163,10 @@ const SidebarRight = () => {
                                                 <p>
                                                     <span className="font-medium text-[16px]">Verano Rosa</span>
                                                 </p>
-                                                <div>
-                                                    <span className="text-sm text-secondary">
-                                                        <a href="" className="font-medium hover:underline hover:text-white">Karol G</a>
-                                                        ,&nbsp;
-                                                        <a href="" className="font-medium hover:underline hover:text-white">Feid</a>
-                                                    </span>
+                                                <div className="leading-tight text-sm text-secondary">
+                                                    <a href="" className="font-medium hover:underline hover:text-white">Karol G</a>
+                                                    ,&nbsp;
+                                                    <a href="" className="font-medium hover:underline hover:text-white">Feid</a>
                                                 </div>
                                             </div>
                                         </div>

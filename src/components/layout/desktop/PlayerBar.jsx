@@ -26,13 +26,9 @@ const PlayerBar = () => {
                                     <img src="/images/Pretty-Boy-Dirty-Boy.webp" alt="" className="rounded-lg" />
                                 </div>
                             </div>
-                            <div className="mx-2 h-[37px] flex flex-col justify-center">
-                                <div>
-                                    <span className="text-sm hover:underline cursor-pointer">Borro Cassette</span>
-                                </div>
-                                <div>
-                                    <span className="text-secondary text-[12px] hover:underline hover:text-white cursor-pointer">Maluma</span>
-                                </div>
+                            <div className="mx-2 h-[37px] flex flex-col justify-center leading-tight">
+                                <span className="text-sm hover:underline cursor-pointer">Borro Cassette</span>
+                                <span className="text-secondary text-[12px] hover:underline hover:text-white cursor-pointer">Maluma</span>
                             </div>
                             <div className="mx-2">
                                 <button className="hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer group">

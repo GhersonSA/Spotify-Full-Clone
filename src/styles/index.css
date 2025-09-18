@@ -18,10 +18,12 @@
   --font-spotify: 'CircularSpotify', Inter, sans-serif;
 
   --bg-tabbar: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,.9), #121212), transparent;
-  --bg-mini-card: #ffffff1a; /* Los cuadraditos de musica que estan en la parte de arriba del main */
+  --color-bg-mini-card: #FFFFFF1A;
+   /* Los cuadraditos de musica que estan en la parte de arriba del main */
   /* background-image: linear-gradient(rgba(0,0,0,.6) 0,var(--background-base) 100%),var(--background-noise); para el fondo degradado de arriba del main 
     "bg-[linear-gradient(rgba(0,0,0,0.6)_0%,#121212_100%),#ff6600]"
   */
+  --color-bg-mini-card-hover: #FFFFFF2A;
 }
 /* SVG global */
 .svg {
@@ -33,7 +35,7 @@
     @apply min-w-[280px] max-w-[420px] h-[calc(100vh-88px-64px)] bg-bg-secondary rounded-lg overflow-auto;
 }
 .main-desktop {
-    @apply flex-1 min-w-[422px] p-4 text-[20px] lg:bg-bg-secondary rounded-lg h-[calc(100vh-88px-64px)] overflow-auto;
+    @apply relative flex-1 min-w-[422px] p-4 text-[20px] lg:bg-bg-secondary rounded-lg h-[calc(100vh-88px-64px)] overflow-auto;
 }
 .resizes-desktop {
     @apply w-[2px] my-3 cursor-col-resize bg-black hover:bg-secondary rounded-lg;

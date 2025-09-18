@@ -3,7 +3,7 @@ const CardMobile = ({ img, nombre}) => {
         <div className="main-card-mobile">
             <div className="main-card-element">
                 <img src={img} alt="Album Art" className="main-card-img"/>
-                <div>
+                <div className="leading-tight">
                     <a href="">
                         <span className="main-card-text">{nombre}</span>
                     </a>
