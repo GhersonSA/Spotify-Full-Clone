@@ -1,4 +1,4 @@
-import { recientes, recomendados, favoritos, escuchado, populares } from "../../../data/mobile/cardMobile"
+import { recientes, recomendados, favoritos, escuchado, populares } from "../../../data/cardMain"
 import Footer from "../Footer"
 import SectionMobile from "../../../features/mobile/SectionMobile"
 

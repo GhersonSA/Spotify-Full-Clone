@@ -8,6 +8,7 @@ import Maluma from "../../../../public/images/Maluma.webp"
 import VeranoRosa from "../../../../public/images/Verano-Rosa.webp";
 
 import CardSideBarLeft from "../../ui/desktop/CardSidebarLeft";
+import ButtonType from "../../ui/ButtonType";
 
 const SidebarLeft = () => {
     return (
@@ -41,15 +42,9 @@ const SidebarLeft = () => {
                 </header>
                 <div className="py-2 px-4">
                     <div className="flex items-center gap-2">
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
-                            <span className="text-sm font-bold">Listas</span>
-                        </div>
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
-                            <span className="text-sm font-bold">Artistas</span>
-                        </div>
-                        <div className="py-1 px-3 rounded-full bg-bg-tertiary hover:bg-hover-2 transition-colors duration-200 ease-in-out cursor-pointer">
-                            <span className="text-sm font-bold">Álbumes</span>
-                        </div>
+                        <ButtonType type={"Listas"} className="font-bold bg-bg-tertiary hover:bg-hover-2" />
+                        <ButtonType type={"Artistas"} className="font-bold bg-bg-tertiary hover:bg-hover-2" />
+                        <ButtonType type={"Álbumes"} className="font-bold bg-bg-tertiary hover:bg-hover-2" />
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import AddIcon from "../../../assets/icons/AddIcon";
 import Maluma from "../../../../public/images/Maluma.webp"
 import PrettyBoyDirtyBoy from "../../../../public/images/Pretty-Boy-Dirty-Boy.webp"
 import VeranoRosa from "../../../../public/images/Verano-Rosa.webp";
+import FollowButton from "../../ui/FollowButton";
+import ViewAllButton from "../../ui/ViewAllButton";
 
 const SidebarRight = () => {
     return (
@@ -60,18 +62,14 @@ const SidebarRight = () => {
                             <div className="flex items-center justify-between">
                                 <div>
                                     <div>
-                                        <span>
-                                            <a href="" className="text-2xl font-bold hover:underline">
-                                                Borro Cassette
-                                            </a>
-                                        </span>
+                                        <a href="" className="text-2xl font-bold hover:underline">
+                                            Borro Cassette
+                                        </a>
                                     </div>
                                     <div>
-                                        <span>
-                                            <a href="" className="text-[16px] text-secondary hover:text-white hover:underline">
-                                                Maluma
-                                            </a>
-                                        </span>
+                                        <a href="" className="text-[16px] text-secondary hover:text-white hover:underline">
+                                            Maluma
+                                        </a>
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-center gap-2">
@@ -102,18 +100,14 @@ const SidebarRight = () => {
                                 </div>
                                 <div className="flex flex-col h-[174px] p-4">
                                     <a href="" className="text-start font-bold hover:underline">
-                                        <span>
-                                            Maluma
-                                        </span>
+                                        Maluma
                                     </a>
                                     <div className="flex justify-between items-center gap-2 pt-2">
                                         <div className="text-start font-medium text-secondary">
                                             42.389.843 oyentes mensuales
                                         </div>
                                         <div>
-                                            <button className="text-sm font-bold px-4 py-1 border border-secondary rounded-full hover:border-white hover:scale-[1.04] transition-all duration-100 ease-out cursor-pointer">
-                                                Seguir
-                                            </button>
+                                            <FollowButton />
                                         </div>
                                     </div>
                                     <span className="leading-snug font-medium text-start text-sm text-secondary my-2 line-clamp-3">Maluma is the stage name of award-winning Colombian pop singer, songwriter, and rapper Juan Luis Londoño Arias. Possessed of a sweet, grainy tenor voice and streetwise yet romantic delivery, the pop urbano was able to cross over from a reggaeton audience to the mainstream thanks to infectious early singles such as "Obsesión" and "Miss Independent"</span>
@@ -123,7 +117,7 @@ const SidebarRight = () => {
                         <div className="h-[249px] p-4 bg-bg-tertiary rounded-lg flex flex-col gap-4">
                             <div className="flex justify-between items-center">
                                 <h2 className="text-[16px] font-bold">Créditos</h2>
-                                <button className="text-sm text-secondary font-bold ml-[10px] hover:text-white hover:underline hover:scale-[1.04] transition-all duration-100 ease-out cursor-pointer">Mostrar todos</button>
+                                <ViewAllButton className="hover:text-white hover:scale-[1.04]" />
                             </div>
                             <div className="flex justify-between items-center leading-snug">
                                 <div className="flex flex-col">
@@ -133,9 +127,7 @@ const SidebarRight = () => {
                                     <span className="font-medium text-sm text-secondary">Artista principal</span>
                                 </div>
                                 <div>
-                                    <button className="text-sm font-bold px-4 py-1 border border-secondary rounded-full hover:border-white hover:scale-[1.04] transition-all duration-100 ease-out cursor-pointer">
-                                        Seguir
-                                    </button>
+                                    <FollowButton />
                                 </div>
                             </div>
                             <div className="flex flex-col leading-snug">
@@ -176,7 +168,7 @@ const SidebarRight = () => {
                                                     <PointsIcon className="svg text-secondary hover:text-white" />
                                                 </span>
                                                 <span className="svg-tooltip-player-bar-end">
-                                                    Mas Opciones para Borro Cassette
+                                                    Mas Opciones para Verano Rosa
                                                 </span>
                                             </button>
                                         </div>
