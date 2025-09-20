@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Outlet } from "react-router-dom";
 import HeaderDesktop from "../components/layout/desktop/HeaderDesktop";
 import MainDesktop from "../components/layout/desktop/MainDesktop";
 import PlayerBar from "../components/layout/desktop/PlayerBar";
@@ -66,7 +67,7 @@ const DesktopLayout = () => {
                 <div className="resizes-desktop" onMouseDown={handleLeftResize}></div>
 
                 <div className="main-desktop scrollbar-hide">
-                    <MainDesktop />
+                    <Outlet />
                 </div>
 
                 <div className="resizes-desktop" onMouseDown={handleRightResize}></div>

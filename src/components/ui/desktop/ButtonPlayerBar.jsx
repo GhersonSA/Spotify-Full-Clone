@@ -1,6 +1,6 @@
-const ButtonPlayerBar = ({icon: Icon, tooltip}) => {
+const ButtonPlayerBar = ({icon: Icon, tooltip, onClick}) => {
     return (
-        <button className="button-svg-playerbar group">
+        <button onClick={onClick} className="button-svg-playerbar group">
             <span className="flex items-center justify-center">
                 <Icon className="svg-player-bar" />
             </span>

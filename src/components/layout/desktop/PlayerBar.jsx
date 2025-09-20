@@ -1,20 +1,27 @@
+import { useContext } from "react";
+import { PlayerContext } from "../../../context/PlayerContext";
+
 import AddIcon from "../../../assets/icons/AddIcon";
 import RandomIcon from "../../../assets/icons/RandomIcon";
 import ArrowBackIcon from "../../../assets/icons/ArrowBackIcon";
 import ArrowNextIcon from "../../../assets/icons/ArrowNextIcon";
 import PlayIcon from "../../../assets/icons/PlayIcon";
+import PauseIcon from "../../../assets/icons/PauseIcon";
 import RepeatIcon from "../../../assets/icons/RepeatIcon";
 import SongViewIcon from "../../../assets/icons/SongViewIcon";
 import LyricViewIcon from "../../../assets/icons/LyricViewIcon";
 import QueueIcon from "../../../assets/icons/QueueIcon";
 import ConnectIcon from "../../../assets/icons/ConnectIcon";
 import FullVolumenIcon from "../../../assets/icons/FullVolumenIcon";
+import MutedVolumenIcon from "../../../assets/icons/MutedVolumenIcon";
 import MiniPlayerIcon from "../../../assets/icons/MiniPlayerIcon";
 import FullScreenIcon from "../../../assets/icons/FullScreenIcon";
 
 import ButtonPlayerBar from "../../ui/desktop/ButtonPlayerBar";
 
 const PlayerBar = () => {
+    const { currentTrack, isPlaying, togglePlay, progress, seek, formatTime, nextTrack, prevTrack, volume, isMuted, toggleMute, changeVolume, audioRef } = useContext(PlayerContext);
+
     return (
         <div className="fixed bottom-0 bg-black h-22 w-full m-[-8px] p-2">
             <aside>
@@ -47,32 +54,43 @@ const PlayerBar = () => {
                             <div className="flex justify-center items-center mb-2 gap-4">
                                 <div className="flex-1 flex justify-end items-center gap-2">
                                     <ButtonPlayerBar icon={RandomIcon} tooltip="Activar aleatorio" />
-                                    <ButtonPlayerBar icon={ArrowBackIcon} tooltip="Anterior" />
+                                    <ButtonPlayerBar icon={ArrowBackIcon} tooltip="Anterior" onClick={prevTrack}/>
                                 </div>
-                                <button className="button-svg-playerbar group bg-white rounded-full ">
+                                <button onClick={togglePlay} className="button-svg-playerbar group bg-white rounded-full">
                                     <span className="flex items-center justify-center ">
-                                        <PlayIcon className="svg text-black" />
+                                        {isPlaying ? (
+                                            <PauseIcon className="svg translate-y-1 translate-x-[4px] text-black" />
+                                        ) : (
+                                            <PlayIcon className="svg text-black" />
+                                        )}
                                     </span>
                                     <span className="svg-tooltip-player-bar">
-                                        Reproducir
+                                        {isPlaying ? "Pausar" : "Reproducir"}
                                     </span>
                                 </button>
                                 <div className="flex-1 flex justify-start items-center gap-2 ml-1.5">
-                                    <ButtonPlayerBar icon={ArrowNextIcon} tooltip="Siguiente" />
+                                    <ButtonPlayerBar icon={ArrowNextIcon} tooltip="Siguiente" onClick={nextTrack} />
                                     <ButtonPlayerBar icon={RepeatIcon} tooltip="Activar repetir" />
                                 </div>
                             </div>
                             <div className="flex justify-between items-center gap-1 h-[17px]">
                                 <div className="text-right w-1/2 text-secondary text-[12px]">
-                                    0:00
+                                    {formatTime(progress)}
                                 </div>
                                 <div className="min-w-[500px] rounded-full">
-                                    <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px] px-2">
-                                        <div className="bg-white rounded-full h-full hover:bg-spotify cursor-pointer">.</div>
+                                    <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px] px-2 cursor-pointer"
+                                        onClick={(e) => {
+                                            const rect = e.currentTarget.getBoundingClientRect();
+                                            const clickPosition = e.clientX - rect.left;
+                                            const clickPercent = clickPosition / rect.width;
+                                            seek(clickPercent * audioRef.current.duration);
+                                        }} >
+                                        <div className="bg-white rounded-full h-full hover:bg-spotify cursor-pointer"
+                                            style={{width: `${(progress / (audioRef.current?.duration || 1)) * 100}%`}}></div>
                                     </div>
                                 </div>
                                 <div className="text-left w-1/2 text-secondary text-[12px]">
-                                    3:17
+                                    {formatTime(currentTrack?.audioDuration || 0)}
                                 </div>
                             </div>
                         </div>
@@ -84,10 +102,24 @@ const PlayerBar = () => {
                             <ButtonPlayerBar icon={QueueIcon} tooltip="Cola" />
                             <ButtonPlayerBar icon={ConnectIcon} tooltip="Conectar a un dispositivo" />
                             <div className="mr-1 flex justify-center items-center">
-                                <ButtonPlayerBar icon={FullVolumenIcon} tooltip="Silenciar" />
+                                <button onClick={toggleMute} className="button-svg-playerbar group">
+                                    <span className="flex items-center justify-center">
+                                        {isMuted ? <MutedVolumenIcon className="svg-player-bar" /> : <FullVolumenIcon className="svg-player-bar" />}
+                                    </span>
+                                    <span className="svg-tooltip-player-bar">
+                                        {isMuted ? "Activar sonido" : "Silenciar"}
+                                    </span>
+                                </button>
                                 <div className="mt-0.5 min-w-[110px] rounded-full">
-                                    <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px] px-2">
-                                        <div className="bg-white rounded-full h-full hover:bg-spotify cursor-pointer">.</div>
+                                    <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px] px-2 cursor-pointer"
+                                    onClick={(e) => {
+                                        const rect = e.currentTarget.getBoundingClientRect();
+                                        const clickPosition = e.clientX - rect.left;
+                                        const clickPercent = clickPosition / rect.width;
+                                        changeVolume(clickPercent);
+                                    }}>
+                                        <div className="bg-white rounded-full h-full hover:bg-spotify cursor-pointer"
+                                            style={{ width: `${volume * 100}%` }}></div>
                                     </div>
                                 </div>
                             </div>
