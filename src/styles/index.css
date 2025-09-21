@@ -170,6 +170,21 @@
     @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg top-full;
 }
 
+/* Modales Desktop */
+
+.radial-ball {
+  position: absolute;
+  top: 50%;
+  right: -300px;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%; 
+  background: radial-gradient(circle, #f3661f50 0%, transparent 70%);
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 
 @font-face {
     font-family: 'CircularSpotify';

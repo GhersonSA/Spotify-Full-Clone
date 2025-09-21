@@ -1,13 +1,16 @@
 import { createContext, useState, useRef, useEffect, useCallback } from "react";
-import tracks from "../data/tracks";
+import tracks from "../data/tracks/tracks";
 
 export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
     const audioRef = useRef(new Audio());
+    const previewAudioRef = useRef(new Audio());
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+
+    const [previewProgress, setPreviewProgress] = useState(0);
 
     const [lyrics, setLyrics] = useState([]);
     const [currentLine, setCurrentLine] = useState(0);
@@ -191,10 +194,25 @@ export const PlayerProvider = ({ children }) => {
         return () => audio.removeEventListener("ended", handleEnded);
     }, [repeatMode, nextTrack]);
 
+    /* Cambiar de cancion en las previews de las MODALES */
+    const playTrack = (trackId) => {
+        const track = tracks.find(t => t.id === trackId);
+        if (track) setCurrentTrack({ ...track, autoPlay: true });
+    };
+
+    /* Barra de progreso para las previews de las MODALES */
+    useEffect(() => {
+        const audio = previewAudioRef.current;
+        const updateProgress = () => setPreviewProgress(audio.currentTime);
+        audio.addEventListener("timeupdate", updateProgress);
+        return () => audio.removeEventListener("timeupdate", updateProgress);
+    }, []);
+
     return (
         <PlayerContext.Provider
-            value={{ audioRef, currentTrack, setCurrentTrack, isPlaying, togglePlay, progress, seek, formatTime, lyrics, setLyrics, currentLine,
-                 nextTrack, prevTrack, volume, setVolume, isMuted, toggleMute, changeVolume, isShuffling, toggleShuffle, toggleRepeat, repeatMode }}>
+            value={{ audioRef, previewAudioRef, currentTrack, setCurrentTrack, isPlaying, togglePlay, progress, seek, formatTime, lyrics, setLyrics, currentLine,
+                 nextTrack, prevTrack, volume, setVolume, isMuted, toggleMute, changeVolume, isShuffling, toggleShuffle, toggleRepeat, repeatMode,
+                 playTrack, previewProgress, setPreviewProgress }}>
             {children}
         </PlayerContext.Provider>
     );

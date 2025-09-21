@@ -1,7 +1,9 @@
+/* Mock Data */
+
 export const recientes = [
     { img: "/images/Maluma.webp", nombre: "Maluma"},
     { img: "/images/Feid.webp", nombre: "Feid"},
-    { img: "/images/Ferxxocalipsis.webp", nombre: "LUNA"},
+    { img: "/images/Ferxxocalipsis.webp", nombre: "LUNA", trackId: 1},
     { img: "/images/Addicted.webp", nombre: "Addicted"},
 ]
 

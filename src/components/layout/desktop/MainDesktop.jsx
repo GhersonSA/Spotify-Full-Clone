@@ -1,15 +1,23 @@
+import { useState } from "react";
 import { recientes, recomendados, favoritos, escuchado, populares } from "../../../data/cardMain";
 import SectionDesktop from "../../../features/desktop/SectionDesktop";
 import MiniCardMain from "../../ui/desktop/MiniCardMain";
 import ButtonType from "../../ui/ButtonType";
 import CardDesktop from "../../ui/desktop/CardDesktop";
 import Footer from "../Footer";
+import PreviewModal from "../../ui/desktop/PreviewModal";
 
 const MainDesktop = () => {
+    /* PARA ACTIVAR PRUEBA MODAL
+    const [previewOpen, setPreviewOpen] = useState(false);
+    const songIds = [1, 2, 3]; */
+
     return (
         <>
             <div className="absolute top-0 left-0 right-0 h-[272px] bg-gradient-to-b from-blue-500/20 to-bg-secondary/10"></div>
-            <div className="relative">        
+            <div className="relative">
+                {/* <PreviewModal isOpen={previewOpen} onClose={() => setPreviewOpen(false)} songIds={songIds} className="w-[38px] h-[48px]"/> 
+                <button onClick={() => setPreviewOpen(true)}>Abrir preview</button> */}
                 <div className="py-1 mb-4">
                     <div className="flex items-center gap-2">
                         <ButtonType type={"Todo"} className="font-medium bg-white hover:bg-bg-mini-card-hover text-black" />
