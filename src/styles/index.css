@@ -149,7 +149,10 @@
     @apply h-8 w-8 hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer;
 }
 .svg-player-bar {
-    @apply w-6 h-6 text-secondary translate-y-1 hover:text-white;
+    @apply w-6 h-6 translate-y-1 hover:brightness-125;
+}
+.svg-player-bar-toggle {
+    @apply w-6 h-6 translate-y-1 hover:brightness-125;
 }
 .svg-tooltip-player-bar {
     @apply absolute mb-2 hidden group-hover:block whitespace-nowrap rounded-md bg-bg-tertiary px-2 py-1 text-[12px] text-white font-semibold shadow-lg bottom-full left-1/2 transform -translate-x-1/2;

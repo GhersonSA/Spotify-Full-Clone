@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import SpotifyIcon from "../../../assets/icons/SpotifyIcon";
 import HomeIcon from "../../../assets/icons/HomeIcon";
 import SearchBarIcon from "../../../assets/icons/SearchBarIcon";
@@ -8,7 +10,6 @@ import NotificationIcon from "../../../assets/icons/NotificationIcon";
 import FriendlyIcon from "../../../assets/icons/FriendlyIcon";
 
 const HeaderDesktop = () => {
-
     return (
         <header className="h-16 w-full flex items-center justify-between relative bg-black">
             <div className="h-[72px] w-[72px] flex items-center justify-center">
@@ -18,11 +19,11 @@ const HeaderDesktop = () => {
             </div>
             <div className="absolute left-1/2 transform -translate-x-1/2">
                 <div className="flex items-center justify-center">
-                    <button className="h-12 w-12 flex justify-center items-center bg-bg-secondary hover:bg-hover hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer rounded-full">
+                    <Link to="/" className="h-12 w-12 flex justify-center items-center bg-bg-secondary hover:bg-hover hover:scale-[1.04] transition-all duration-200 ease-in-out cursor-pointer rounded-full">
                         <span>
                             <HomeIcon className="svg" />
                         </span>
-                    </button>
+                    </Link>
                     <div className="w-[490px] h-12 px-2">
                         <form action="" className="flex items-center bg-bg-secondary border border-bg-secondary hover:bg-hover hover:border hover:border-secondary transition-colors duration-200 ease-in-out cursor-pointer rounded-full">
                             <div className="h-12 w-12 flex items-center justify-center">

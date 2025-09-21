@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { PlayerContext } from "../../../context/PlayerContext";
 
 import FavoriteIcon from "../../../assets/icons/FavoriteIcon";
@@ -6,9 +7,10 @@ import PlayIcon from "../../../assets/icons/PlayIcon";
 import PauseIcon from "../../../assets/icons/PauseIcon";
 
 const MiniPlayer = () => {
-    const { currentTrack, isPlaying, togglePlay, progress, seek, formatTime, nextTrack, prevTrack, volume, isMuted, toggleMute, changeVolume, audioRef } = useContext(PlayerContext);
+    const { currentTrack, isPlaying, togglePlay, progress, seek, formatTime, nextTrack, prevTrack, volume, isMuted, toggleMute, changeVolume, isShuffling, toggleShuffle, toggleRepeat, repeatMode, audioRef } = useContext(PlayerContext);
 
     return (
+        <NavLink to="/lyrics">
         <div className="relative flex justify-between gap-2 rounded-[6px] h-14 mx-2 p-2 /*bg-[hsla(0,0%,33%,.3)]*/ bg-[#c55319]">
             <div className="flex gap-2">
                 <img src="https://i1.sndcdn.com/artworks-JpSsYnr6AKfg-0-t500x500.jpg" alt="Album Art" className="h-10 w-10 rounded-sm "/>
@@ -25,7 +27,7 @@ const MiniPlayer = () => {
                 <button className="p-2">
                     <FavoriteIcon className="svg" />
                 </button>
-                <button onClick={togglePlay} className="px2">
+                <button onClick={togglePlay} className="px-[6px]">
                     {isPlaying ? (
                         <PauseIcon className="svg translate-y-1 translate-x-[4px]" />
                     ) : (
@@ -47,6 +49,7 @@ const MiniPlayer = () => {
                     style={{width: `${(progress / (audioRef.current?.duration || 1)) * 100}%`}}></div>
             </div>
         </div>
+        </NavLink>
     )
 }
 

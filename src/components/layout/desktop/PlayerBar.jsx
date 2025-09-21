@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 import { PlayerContext } from "../../../context/PlayerContext";
 
 import AddIcon from "../../../assets/icons/AddIcon";
@@ -8,6 +9,7 @@ import ArrowNextIcon from "../../../assets/icons/ArrowNextIcon";
 import PlayIcon from "../../../assets/icons/PlayIcon";
 import PauseIcon from "../../../assets/icons/PauseIcon";
 import RepeatIcon from "../../../assets/icons/RepeatIcon";
+import RepeatOneIcon from "../../../assets/icons/RepeatOneIcon";
 import SongViewIcon from "../../../assets/icons/SongViewIcon";
 import LyricViewIcon from "../../../assets/icons/LyricViewIcon";
 import QueueIcon from "../../../assets/icons/QueueIcon";
@@ -20,7 +22,7 @@ import FullScreenIcon from "../../../assets/icons/FullScreenIcon";
 import ButtonPlayerBar from "../../ui/desktop/ButtonPlayerBar";
 
 const PlayerBar = () => {
-    const { currentTrack, isPlaying, togglePlay, progress, seek, formatTime, nextTrack, prevTrack, volume, isMuted, toggleMute, changeVolume, audioRef } = useContext(PlayerContext);
+    const { currentTrack, isPlaying, togglePlay, progress, seek, formatTime, nextTrack, prevTrack, volume, isMuted, toggleMute, changeVolume, isShuffling, toggleShuffle, toggleRepeat, repeatMode, audioRef } = useContext(PlayerContext);
 
     return (
         <div className="fixed bottom-0 bg-black h-22 w-full m-[-8px] p-2">
@@ -53,7 +55,8 @@ const PlayerBar = () => {
                         <div className="flex flex-col justify-center items-center">
                             <div className="flex justify-center items-center mb-2 gap-4">
                                 <div className="flex-1 flex justify-end items-center gap-2">
-                                    <ButtonPlayerBar icon={RandomIcon} tooltip="Activar aleatorio" />
+                                    <ButtonPlayerBar icon={() => isShuffling ? ( <RandomIcon className="svg-player-bar-toggle text-spotify" /> ) : ( <RandomIcon className="svg-player-bar text-secondary" /> )}
+                                        tooltip={isShuffling ? "Desactivar aleatorio" : "Activar aleatorio"} onClick={toggleShuffle} className={isShuffling ? "text-spotify" : ""} />
                                     <ButtonPlayerBar icon={ArrowBackIcon} tooltip="Anterior" onClick={prevTrack}/>
                                 </div>
                                 <button onClick={togglePlay} className="button-svg-playerbar group bg-white rounded-full">
@@ -70,7 +73,9 @@ const PlayerBar = () => {
                                 </button>
                                 <div className="flex-1 flex justify-start items-center gap-2 ml-1.5">
                                     <ButtonPlayerBar icon={ArrowNextIcon} tooltip="Siguiente" onClick={nextTrack} />
-                                    <ButtonPlayerBar icon={RepeatIcon} tooltip="Activar repetir" />
+                                    <ButtonPlayerBar icon={() => repeatMode === "one" ? ( <RepeatOneIcon className="svg-player-bar-toggle text-spotify " /> ) : repeatMode === "all" ? ( <RepeatIcon className="svg-player-bar-toggle text-spotify" /> ) : ( <RepeatIcon className="svg-player-bar text-secondary" /> )}
+                                        tooltip={repeatMode === "off" ? "Activar repetir" : repeatMode === "all" ? "Repetir lista" : "Repetir canción"}
+                                        onClick={toggleRepeat} className={repeatMode !== "off" ? "text-spotify" : "text-white"} />
                                 </div>
                             </div>
                             <div className="flex justify-between items-center gap-1 h-[17px]">
@@ -98,13 +103,17 @@ const PlayerBar = () => {
                     <div className="min-w-[180px] w-[30%] flex justify-end items-center">
                         <div className="flex justify-end items-center flex-grow-1">
                             <ButtonPlayerBar icon={SongViewIcon} tooltip="Vista Sonando" />
-                            <ButtonPlayerBar icon={LyricViewIcon} tooltip="Letra" />
+                            <NavLink to="/lyrics">
+                                {({ isActive }) => (
+                                    <ButtonPlayerBar icon={LyricViewIcon} tooltip="Letra" active={isActive} />  
+                                )}
+                            </NavLink>
                             <ButtonPlayerBar icon={QueueIcon} tooltip="Cola" />
                             <ButtonPlayerBar icon={ConnectIcon} tooltip="Conectar a un dispositivo" />
                             <div className="mr-1 flex justify-center items-center">
                                 <button onClick={toggleMute} className="button-svg-playerbar group">
                                     <span className="flex items-center justify-center">
-                                        {isMuted ? <MutedVolumenIcon className="svg-player-bar" /> : <FullVolumenIcon className="svg-player-bar" />}
+                                        {isMuted ? <MutedVolumenIcon className="svg-player-bar text-secondary" /> : <FullVolumenIcon className="svg-player-bar text-secondary" />}
                                     </span>
                                     <span className="svg-tooltip-player-bar">
                                         {isMuted ? "Activar sonido" : "Silenciar"}
@@ -125,7 +134,7 @@ const PlayerBar = () => {
                             </div>
                             <button className="button-svg-playerbar group">
                                 <span className="flex items-center justify-center">
-                                    <MiniPlayerIcon className="svg-player-bar" />
+                                    <MiniPlayerIcon className="svg-player-bar text-secondary" />
                                 </span>
                                 <span className="svg-tooltip-player-bar-end">
                                     Abrir el Minirreproductor
@@ -133,7 +142,7 @@ const PlayerBar = () => {
                             </button>
                             <button className="button-svg-playerbar group">
                                 <span className="flex items-center justify-center">
-                                    <FullScreenIcon className="svg-player-bar" />
+                                    <FullScreenIcon className="svg-player-bar text-secondary" />
                                 </span>
                                 <span className="svg-tooltip-player-bar-end">
                                     Abrir la pantalla completa

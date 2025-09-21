@@ -1,13 +1,12 @@
-import { PlayerProvider } from './context/PlayerContext'
-import DesktopLayout from './layout/DesktopLayout'
-import MobileLayout from './layout/MobileLayout'
-import AppRoutes from "./routes/AppRoutes"
-import './styles/index.css'
+import { RouterProvider } from "react-router-dom";
+import { PlayerProvider } from "./context/PlayerContext";
+import AppRoutes from "./routes/AppRoutes";
+import "./styles/index.css";
 
 function App() {
   return (
     <PlayerProvider>
-      <AppRoutes />
+      <RouterProvider router={AppRoutes} />
     </PlayerProvider>
   );
 }

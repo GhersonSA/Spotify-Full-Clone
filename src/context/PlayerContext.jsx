@@ -1,19 +1,42 @@
-import { createContext, useState, useRef, useEffect } from "react";
+import { createContext, useState, useRef, useEffect, useCallback } from "react";
 import tracks from "../data/tracks";
 
 export const PlayerContext = createContext();
 
 export const PlayerProvider = ({ children }) => {
     const audioRef = useRef(new Audio());
-    const [currentTrack, setCurrentTrack] = useState(tracks[0]);
+
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
+
     const [lyrics, setLyrics] = useState([]);
     const [currentLine, setCurrentLine] = useState(0);
 
-    const [volume, setVolume] = useState(1);
-    const [isMuted, setIsMuted] = useState(false);
     const [prevVolume, setPrevVolume] = useState(1);
+
+    // Obtener el track guardado o el primero
+    const savedState = localStorage.getItem("playerState");
+    const parsedState = savedState ? JSON.parse(savedState) : {};
+    const initialTrack = parsedState.currentTrackId
+        ? tracks.find(t => t.id === parsedState.currentTrackId) || tracks[0]
+        : tracks[0];
+
+    const [currentTrack, setCurrentTrack] = useState(initialTrack);
+    const [volume, setVolume] = useState(parsedState.volume ?? 1);
+    const [isMuted, setIsMuted] = useState(parsedState.isMuted ?? false);
+    const [isShuffling, setIsShuffling] = useState(parsedState.isShuffling ?? false);
+    const [repeatMode, setRepeatMode] = useState(parsedState.repeatMode ?? "off");  // valores: "off" | "all" | "one"
+
+    // Guardar el track actual, posicion de volumen y botones cada vez que cambie
+    useEffect(() => {
+        localStorage.setItem("playerState", JSON.stringify({
+            currentTrackId: currentTrack.id,
+            volume,
+            isMuted,
+            isShuffling,
+            repeatMode
+        }));
+    }, [currentTrack, volume, isMuted, isShuffling, repeatMode]);
 
     // Actualizar volumen en el audio cuando cambia
     useEffect(() => {
@@ -49,7 +72,13 @@ export const PlayerProvider = ({ children }) => {
         audio.src = currentTrack.src;
         setLyrics(currentTrack.lyrics || []);
         setProgress(0);
-        setIsPlaying(false); // Pausa hasta que el usuario haga play
+
+        if (!currentTrack.autoPlay) {
+            setIsPlaying(false);
+        } else {
+            audio.play().catch(err => console.warn("play() failed:", err));
+            setIsPlaying(true);
+        }
     }, [currentTrack]);
 
     // Actualiza progreso y letra
@@ -73,7 +102,7 @@ export const PlayerProvider = ({ children }) => {
         if (!currentTrack) return;
         
         if (isPlaying) audio.pause();
-        else audio.play(); // Solo se reproduce tras interacción
+        else audio.play();
         setIsPlaying(!isPlaying);
     };
 
@@ -88,22 +117,31 @@ export const PlayerProvider = ({ children }) => {
         return `${minutes}:${seconds.toString().padStart(2, "0")}`;
     }
 
-    const nextTrack = () => {
-        const index = tracks.findIndex(track => track.id === currentTrack.id);
-        const next = tracks[(index + 1) % tracks.length];
-        setCurrentTrack(next);
-        if (isPlaying) {
-            setTimeout(() => {
-                audioRef.current.play();
-                setIsPlaying(true);
-            }, 0);
-        }
+    // Pista siguiente + botón aleatorio
+    const toggleShuffle = () => {
+        setIsShuffling(prev => !prev);
     };
+
+    const nextTrack = useCallback((autoPlay = false) => {
+        const index = tracks.findIndex(track => track.id === currentTrack.id);
+        let next;
+        if (isShuffling && tracks.length > 1) {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * tracks.length);
+            } while (randomIndex === index);
+            next = tracks[randomIndex];
+        } else {
+            next = tracks[(index + 1) % tracks.length];
+        }
+
+        setCurrentTrack({ ...next, autoPlay });
+    }, [currentTrack, isShuffling]);
 
     const prevTrack = () => {
         const index = tracks.findIndex(track => track.id === currentTrack.id);
         if (audioRef.current.currentTime > 3) {
-            // Si la canción ya va avanzada, reinicia
+            
             seek(0);
             if (!isPlaying) {
                 audioRef.current.play();
@@ -121,9 +159,42 @@ export const PlayerProvider = ({ children }) => {
         }
     };
 
+    // No repetir / repetir lista / repetir 1
+    const toggleRepeat = () => {
+        let newRepeat;
+        if (repeatMode === "off") newRepeat = "all";
+        else if (repeatMode === "all") newRepeat = "one";
+        else newRepeat = "off";
+
+        setRepeatMode(newRepeat);
+    };
+
+    // Cuando termina la canción
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+        const handleEnded = () => {
+            if (repeatMode === "one") {
+                audio.currentTime = 0;
+                const p = audio.play();
+                if (p && typeof p.then === "function") {
+                    p.catch(err => console.warn("play() failed on repeat one ended:", err));
+                }
+            } else if (repeatMode === "all") {
+                nextTrack(true);
+            } else {
+                setIsPlaying(false);
+        }
+    };
+
+        audio.addEventListener("ended", handleEnded);
+        return () => audio.removeEventListener("ended", handleEnded);
+    }, [repeatMode, nextTrack]);
+
     return (
-        <PlayerContext.Provider value={{ audioRef, currentTrack, setCurrentTrack, isPlaying, togglePlay, progress, seek, formatTime, 
-            lyrics, setLyrics, currentLine, nextTrack, prevTrack, volume, setVolume, isMuted, toggleMute, changeVolume }}>
+        <PlayerContext.Provider
+            value={{ audioRef, currentTrack, setCurrentTrack, isPlaying, togglePlay, progress, seek, formatTime, lyrics, setLyrics, currentLine,
+                 nextTrack, prevTrack, volume, setVolume, isMuted, toggleMute, changeVolume, isShuffling, toggleShuffle, toggleRepeat, repeatMode }}>
             {children}
         </PlayerContext.Provider>
     );
