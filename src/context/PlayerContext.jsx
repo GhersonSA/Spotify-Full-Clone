@@ -1,5 +1,7 @@
 import { createContext, useState, useRef, useEffect, useCallback } from "react";
-import tracks from "../data/tracks/tracks";
+import tracks from "../data/tracks";
+import artists from "../data/artists";
+import albums from "../data/album";
 
 export const PlayerContext = createContext();
 
@@ -20,9 +22,23 @@ export const PlayerProvider = ({ children }) => {
     // Obtener el track guardado o el primero
     const savedState = localStorage.getItem("playerState");
     const parsedState = savedState ? JSON.parse(savedState) : {};
-    const initialTrack = parsedState.currentTrackId
+    // Encuentra the track y su related info
+    const trackToUse = parsedState.currentTrackId
         ? tracks.find(t => t.id === parsedState.currentTrackId) || tracks[0]
         : tracks[0];
+    
+    const albumInfo = albums.find(a => a.tracks.includes(trackToUse.id));
+    const artistInfo = artists.find(a => a.id === albumInfo?.artistId);
+
+    // Crear initial track con complete info
+    const initialTrack = {
+        ...trackToUse,
+        artist: artistInfo?.name || "Unknown Artist",
+        album: albumInfo?.name || "Unknown Album",
+        albumImg: albumInfo?.img || trackToUse.image,
+        artistId: artistInfo?.id,
+        albumId: albumInfo?.id
+    };
 
     const [currentTrack, setCurrentTrack] = useState(initialTrack);
     const [volume, setVolume] = useState(parsedState.volume ?? 1);

@@ -38,7 +38,7 @@ const LUNA = [
     { time: 118, text: "Baby, dolió tu engaño" },
     { time: 121, text: "Ojalá que se acabe este tema y por fin yo me olvide de ti" },
     { time: 125, text: "Te busco y no sé dónde estás" },
-    { time: 128, text: "Toy buscando respuestas" },
+    { time: 128, text: "Estoy buscando respuestas" },
     { time: 130, text: "¿Cuándo fue la última vez que te vi sonreír?" },
     { time: 135, text: 'Te decía "mi reina"' },
     { time: 137, text: "Te temblaban las piernas" },

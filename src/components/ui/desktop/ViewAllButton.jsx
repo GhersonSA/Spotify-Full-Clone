@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-const ViewAllButton = ({ title, type, className }) => {
+const ViewAllButton = ({ title, type }) => {
     const navigate = useNavigate();
 
     const handleViewAll = () => {
@@ -9,12 +9,11 @@ const ViewAllButton = ({ title, type, className }) => {
         });
     };
 
-    return(
-        <button onClick={handleViewAll} 
-            className={`text-sm text-secondary font-bold ml-[10px] hover:underline transition-all duration-100 ease-out cursor-pointer ${className}`}>
+    return (
+        <button onClick={handleViewAll} className="text-secondary font-bold hover:underline">
             Mostrar todos
         </button>
-    )
-}
+    );
+};
 
 export default ViewAllButton;

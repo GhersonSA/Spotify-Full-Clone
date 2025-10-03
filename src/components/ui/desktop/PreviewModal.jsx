@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import { PlayerContext } from "../../../context/PlayerContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 import FullVolumenIcon from "../../../assets/icons/FullVolumenIcon";
 import MutedVolumenIcon from "../../../assets/icons/MutedVolumenIcon";
@@ -12,10 +13,10 @@ import ArrowTopIcon from "../../../assets/icons/ArrowTopIcon";
 import ArrowDownIcon from "../../../assets/icons/ArrowDownIcon";
 
 import FollowButton from "../FollowButton";
-import tracks from "../../../data/tracks/tracks";
+import tracks from "../../../data/tracks";
 
 const PreviewModal = ({ isOpen, onClose, songIds }) => {
-    const { previewAudioRef, volume, isMuted, toggleMute, previewProgress, setPreviewProgress } = useContext(PlayerContext);
+    const { audioRef, previewAudioRef, currentTrack, isPlaying, volume, isMuted, toggleMute, previewProgress, setPreviewProgress } = useContext(PlayerContext);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const modalRef = useRef(null);
@@ -46,21 +47,42 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
     }, [isOpen]);
 
     useEffect(() => {
-        const audio = previewAudioRef.current;
-        audio.volume = isMuted ? 0 : volume;
+        if (!previewAudioRef.current) return;
+        previewAudioRef.current.volume = isMuted ? 0 : volume;
     }, [isMuted, volume]);
 
     // Reproducir la canción al abrir el modal o cambiar el index
     useEffect(() => {
+        const mainAudio = audioRef.current;
+        const previewAudio = previewAudioRef.current;
+
         if (!isOpen || !currentPreview) return;
 
+        if (!mainAudio.paused) mainAudio.pause();
+
         const audio = previewAudioRef.current;
+        /*
+        if (audio.src !== currentPreview.src) {
+            audio.src = currentPreview.src;
+            audio.currentTime = startTime;
 
-        audio.src = currentPreview.src;
-        audio.currentTime = startTime;
-        audio.volume = isMuted ? 0 : volume;
+            audio.volume = isMuted ? 0 : volume;
+        }
 
-        audio.play().catch(err => console.warn(err));
+        if (audio.paused) {
+            audio.play().catch(err => console.warn(err));
+        } */
+
+        if (previewAudio.src !== currentPreview.src) {
+            previewAudio.src = currentPreview.src;
+            previewAudio.currentTime = startTime;
+        }
+
+        previewAudio.volume = isMuted ? 0 : volume;
+
+        if (previewAudio.paused) {
+            previewAudio.play().catch(err => console.warn(err));
+        }
 
         // Actualizar progreso
         const handleTimeUpdate = () => {
@@ -82,8 +104,41 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
             audio.currentTime = startTime;
             audio.removeEventListener("timeupdate", handleTimeUpdate);
             setPreviewProgress(0);
+
+            // Restaurar audio principal si estaba reproduciéndose
+            if (currentTrack && isPlaying) {
+                mainAudio.play().catch(err => console.warn(err));
+            }
         };
-    }, [previewAudioRef, currentIndex, isOpen, currentPreview, setPreviewProgress]);
+    }, [currentIndex, isOpen, currentPreview]); /* previewAudioRef, setPreviewProgress */
+
+    /* Si esta sonando en el playbar, se pausa hasta que se cierre el modal */ /*
+    useEffect(() => {
+        const mainAudio = audioRef.current;
+        const previewAudio = previewAudioRef.current;
+
+        if (isOpen) {
+            // Pausar la barra de reproducción principal
+            if (!mainAudio.paused) mainAudio.pause();
+
+            // Iniciar preview
+            if (currentPreview) {
+                previewAudio.src = currentPreview.src;
+                previewAudio.currentTime = startTime;
+                previewAudio.volume = isMuted ? 0 : volume;
+                previewAudio.play().catch(err => console.warn(err));
+            }
+        } else {
+            // Al cerrar, detener el preview
+            previewAudio.pause();
+            previewAudio.currentTime = startTime;
+
+            // Restaurar audio principal si estaba reproduciéndose
+            if (currentTrack && isPlaying) {
+                mainAudio.play().catch(err => console.warn(err));
+            }
+        }
+    }, [isOpen, currentPreview, isMuted, volume]); */
 
     useEffect(() => {
         if (!isOpen) return;
@@ -97,11 +152,17 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
             if (e.deltaY > 0) {
                 // Scroll hacia abajo → siguiente canción
                 e.preventDefault();
-                setCurrentIndex((prev) => (prev + 1) % songIds.length);
+                setCurrentIndex((prev) => {
+                    if (prev >= songIds.length - 1) return prev;
+                    return prev + 1;
+                });
             } else if (e.deltaY < 0) {
                 // Scroll hacia arriba → canción anterior
                 e.preventDefault();
-                setCurrentIndex((prev) => (prev - 1 + songIds.length) % songIds.length);
+                setCurrentIndex((prev) => {
+                    if (prev <= 0) return prev;
+                    return prev - 1;
+                });
             }
 
             // Permitir otro scroll después de 400ms (como Spotify)
@@ -151,13 +212,13 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
                             <div className="pl-4 flex flex-col justify-between">
                                 <div className="min-h-[2lh] flex items-end">
                                     <span className="line-clamp-2">
-                                        <a href="" className="text-[32px] font-bold hover:underline">LUNA</a>
+                                        <a href="" className="text-[32px] font-bold hover:underline">{currentPreview.title}</a>
                                     </span>
                                 </div>
                                 <div className="flex">
                                     <div>
                                         <a href="">
-                                            <span className="text-[16px] text-secondary hover:underline">Feid</span>
+                                            <span className="text-[16px] text-secondary hover:underline">{currentPreview.artist}</span>
                                         </a>
                                     </div>
                                     <div>
@@ -168,7 +229,7 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
                                 </div>
                                 <div className="h-[70px] max-w-[318px] flex items-center gap-6 pt-4">
                                     <div className="h-[54px] w-[54px]">
-                                        <img src="/images/Ferxxocalipsis.webp" alt="" className="h-[54px] w-[54px] rounded-sm object-cover" />
+                                        <img src={currentPreview.image} alt={currentPreview.title} className="h-[54px] w-[54px] rounded-sm object-cover" />
                                     </div>
                                     <div className="min-w-[240px] max-w-[200px] rounded-full">
                                         <div className="overflow-hidden left-0 right-0 bg-[#525252]/30 w-full h-[4px] rounded-[2px] bottom-[0px]">
@@ -234,8 +295,16 @@ const PreviewModal = ({ isOpen, onClose, songIds }) => {
                                 <img src="" alt="" className="w-[325px]" />
                             </div>
                             <div>
-                                <div className="w-[276px] h-[276px]">
-                                    <img src="/images/Ferxxocalipsis.webp" alt="" className="rounded-lg"/>
+                                <div className="w-[276px] h-[276px] overflow-hidden relative">
+                                    {/* <img src={currentPreview.image} alt={currentPreview.title} className="rounded-lg object-cover"/> */}
+                                    <AnimatePresence mode="wait">
+                                        <motion.img
+                                            key={currentPreview.id} src={currentPreview.image} alt={currentPreview.title} className="absolute top-0 left-0 w-full h-full object cover rounded-lg"
+                                            initial={{ y: 100, opacity: 0 }}
+                                            animate={{ y: 0, opacity: 1 }}
+                                            exit = {{ y: -100, opacity: 0 }}
+                                            transition= {{ duration: 0.2, ease: "easeInOut" }} />
+                                    </AnimatePresence>
                                 </div>
                             </div>
                         </div>
